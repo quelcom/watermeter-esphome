@@ -1,0 +1,15 @@
+name: Build firmware
+
+on:
+  push:
+    branches:
+      - 2.0.1_quelcom
+
+jobs:
+  build:
+    uses: esphome/workflows/.github/workflows/publish.yml@main
+    with:
+      files: muino-water-meter-esp32.yaml
+      name: Muino water meter
+      esphome_version: 2023.10.6
+
