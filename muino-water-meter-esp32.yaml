@@ -126,6 +126,7 @@ sensor:
 # dark sensor values
   - platform: template
     name: "sensa_dark"
+    internal: true
     id: ad
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
@@ -135,6 +136,7 @@ sensor:
 
   - platform: template
     name: "sensb_dark"
+    internal: true
     id: bd
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
@@ -144,6 +146,7 @@ sensor:
 
   - platform: template
     name: "sensc_dark"
+    internal: true
     id: cd
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
@@ -154,6 +157,7 @@ sensor:
 # sensor values
   - platform: template
     name: "sensa"
+    internal: true
     id: al
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
@@ -163,6 +167,7 @@ sensor:
 
   - platform: template
     name: "sensb"
+    internal: true
     id: bl
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
@@ -172,18 +177,19 @@ sensor:
 
   - platform: template
     name: "sensc"
+    internal: true
     id: cl
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
     accuracy_decimals: 0 
     lambda: |-
-
       return id(light_sensor_c_light).state;
 
 
 # substracted values
   - platform: template
     name: "sensa_sub"
+    internal: true
     id: as
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
@@ -194,6 +200,7 @@ sensor:
 
   - platform: template
     name: "sensb_sub"
+    internal: true
     id: bs
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
@@ -203,6 +210,7 @@ sensor:
 
   - platform: template
     name: "sensc_sub"
+    internal: true
     id: cs
     device_class: "ILLUMINANCE"
     unit_of_measurement: "lx"
@@ -214,10 +222,10 @@ sensor:
   - platform: template
     name: "water_liter_sensor"
     id: report_liters
-    device_class: "WATER"
+    device_class: "water"
     unit_of_measurement: "mL"
     accuracy_decimals: 0 
-    state_class: "total"
+    state_class: total_increasing
     lambda: |-
       if (id(liters) < 2){
         return 0;
@@ -227,10 +235,10 @@ sensor:
   - platform: template
     name: "liters"
     id: report_liters_rounded
-    device_class: "WATER"
+    device_class: "water"
     unit_of_measurement: "L"
     accuracy_decimals: 0 
-    state_class: "total"
+    state_class: total_increasing
     lambda: |-
       return id(liters);
 
@@ -385,7 +393,7 @@ globals:
 # Make sure logging is correct for solving platform IO bugs
 logger:
   hardware_uart: USB_SERIAL_JTAG
-  level: INFO
+  level: ERROR
 
 # API is a requirement of the dashboard import.
 api:
